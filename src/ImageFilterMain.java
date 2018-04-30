@@ -23,6 +23,8 @@ public class ImageFilterMain extends JPanel {
         BufferedImage test = FilteredImage.getImageFromArray(pixels);
         g2.drawImage(test, 0, 0, null);
 
+//        myImage.drawGrayScale(g2);
+
     }
 
     public static void main(String[] args) {
