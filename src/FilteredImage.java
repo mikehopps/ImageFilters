@@ -23,30 +23,9 @@ public class FilteredImage {
 
     }
 
-
     public void draw(Graphics2D g2){
         if(image != null){
             g2.drawImage(image, location.x, location.y, null);
-        }else{
-            g2.fillRect(location.x, location.y, 100, 100);
-        }
-    }
-
-    public void drawGrayScale(Graphics2D g2){
-        if(image != null){
-
-            Pixel[][] pixels = getArray();
-            for (int i = 0; i < pixels.length; i++) {
-                for (int j = 0; j < pixels[0].length; j++) {
-                    int ave = pixels[i][j].getBlue() + pixels[i][j].getRed() + pixels[i][j].getGreen();
-                    ave = ave/3;
-                    pixels[i][j].setBlue(ave);
-                    pixels[i][j].setRed(ave);
-                    pixels[i][j].setGreen(ave);
-                }
-            }
-            g2.drawImage(getImageFromArray(pixels), 0, 0, null);
-
         }else{
             g2.fillRect(location.x, location.y, 100, 100);
         }
@@ -110,6 +89,10 @@ public class FilteredImage {
         return null;
     }
 
+
+    /*
+    Returns a BufferedImage that is constructed from a Pixel[][].
+     */
     public static BufferedImage getImageFromArray(Pixel[][] array){
         BufferedImage newImage = new BufferedImage(array[0].length, array.length, BufferedImage.TYPE_4BYTE_ABGR);
         for (int r = 0; r < array.length; r++) {
@@ -121,4 +104,11 @@ public class FilteredImage {
 
     }
 
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public Point getLocation() {
+        return location;
+    }
 }

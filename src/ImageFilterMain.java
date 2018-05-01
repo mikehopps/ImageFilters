@@ -12,18 +12,18 @@ public class ImageFilterMain extends JPanel {
     public ImageFilterMain(int w, int h){
         setSize(w, h);
 
-        myImage = new FilteredImage("testpic.jpg", 0, 0);
+        myImage = new GrayScaleImage("testpic.jpg", 0, 0);
     }
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
 
-        Pixel[][] pixels = myImage.getArray();
-        BufferedImage test = FilteredImage.getImageFromArray(pixels);
-        g2.drawImage(test, 0, 0, null);
+//        Pixel[][] pixels = myImage.getArray();
+//        BufferedImage test = FilteredImage.getImageFromArray(pixels);
+//        g2.drawImage(test, 0, 0, null);
 
-//        myImage.drawGrayScale(g2);
+        myImage.draw(g2);
 
     }
 
