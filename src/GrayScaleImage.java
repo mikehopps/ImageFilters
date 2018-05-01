@@ -18,9 +18,9 @@ public class GrayScaleImage extends FilteredImage {
                     for (int j = 0; j < pixels[0].length; j++) {
                         int ave = pixels[i][j].getBlue() + pixels[i][j].getRed() + pixels[i][j].getGreen();
                         ave = ave/3;
-                        pixels[i][j].setBlue(255-ave);
-                        pixels[i][j].setRed(255-ave);
-                        pixels[i][j].setGreen(255-ave);
+                        pixels[i][j].setBlue(ave);
+                        pixels[i][j].setRed(ave);
+                        pixels[i][j].setGreen(ave);
                     }
                 }
                 g2.drawImage(getImageFromArray(pixels), getLocation().x, getLocation().y, null);
