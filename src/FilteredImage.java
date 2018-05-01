@@ -12,6 +12,7 @@ public class FilteredImage {
     private BufferedImage image;
     private Point location;
 
+    //Constructors:
     public FilteredImage(String fileName, int x, int y) {
         try{
             image = ImageIO.read(new File("res/" + fileName));
@@ -23,6 +24,15 @@ public class FilteredImage {
 
     }
 
+    public FilteredImage(Pixel[][] pixels, int x, int y) {
+        this.image = getImageFromPixels(pixels);
+        location = new Point(x, y);
+    }
+    //End constructors
+
+    /*
+    Draws this FilteredImage, using the BufferedImage instance field.
+     */
     public void draw(Graphics2D g2){
         if(image != null){
             g2.drawImage(image, location.x, location.y, null);
@@ -31,12 +41,11 @@ public class FilteredImage {
         }
     }
 
-
     /*
     Returns an integer array, where each integer represents the color of one pixel.
     result[0][0] is the color of the top left pixel.
      */
-    public Pixel[][] getArray(){
+    public Pixel[][] getPixels(){
 
         if(image != null) {
             final byte[] pixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
@@ -89,11 +98,10 @@ public class FilteredImage {
         return null;
     }
 
-
     /*
     Returns a BufferedImage that is constructed from a Pixel[][].
      */
-    public static BufferedImage getImageFromArray(Pixel[][] array){
+    public static BufferedImage getImageFromPixels(Pixel[][] array){
         BufferedImage newImage = new BufferedImage(array[0].length, array.length, BufferedImage.TYPE_4BYTE_ABGR);
         for (int r = 0; r < array.length; r++) {
             for (int c = 0; c < array[0].length; c++) {
@@ -110,5 +118,13 @@ public class FilteredImage {
 
     public Point getLocation() {
         return location;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+
+    public void setImage(Pixel[][] pixels) {
+        this.image = getImageFromPixels(pixels);
     }
 }

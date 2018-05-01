@@ -18,11 +18,6 @@ public class ImageFilterMain extends JPanel {
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-
-//        Pixel[][] pixels = myImage.getArray();
-//        BufferedImage test = FilteredImage.getImageFromArray(pixels);
-//        g2.drawImage(test, 0, 0, null);
-
         myImage.draw(g2);
 
     }
